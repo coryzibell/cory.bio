@@ -1,0 +1,16 @@
+name = "cory_bio-dev"
+type = "webpack"
+workers_dev = false
+route = "cory_bio.c8l.dev/*"
+
+[site]
+bucket = "./public"
+entry-point = "workers-site"
+
+[env.staging]
+name = "cory_bio-stg"
+route = "stage.cory.bio/*"
+
+[env.production]
+name = "cory_bio-prd"
+route = "cory.bio/*"
