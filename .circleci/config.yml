@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  cloudflare-wrangler: coryzibell/cloudflare-wrangler@2.0.1
+  cloudflare-wrangler: coryzibell/cloudflare-wrangler@2.0.2
 
 workflows:
   deploy-cloudflare-dev:
