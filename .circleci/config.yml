@@ -6,7 +6,10 @@ orbs:
 workflows:
   deploy-cloudflare-dev:
     jobs:
-      - cloudflare-wrangler/run:
+      - cloudflare-wrangler/publish-wrangler-site:
+          context:
+            - cloudflare-workers-auth
+            - cloudflare-zone-c8l-dev
           filters:
             branches:
               only:
@@ -14,7 +17,10 @@ workflows:
 
   deploy-cloudflare-staging:
     jobs:
-      - cloudflare-wrangler/run:
+      - cloudflare-wrangler/publish-wrangler-site:
+          context:
+            - cloudflare-workers-auth
+            - cloudflare-zone-cory-bio
           environment: "staging"
           filters:
             branches:
@@ -23,7 +29,10 @@ workflows:
 
   deploy-cloudflare-production:
     jobs:
-      - cloudflare-wrangler/run:
+      - cloudflare-wrangler/publish-wrangler-site:
+          context:
+            - cloudflare-workers-auth
+            - cloudflare-zone-cory-bio
           type: approval
           environment: "production"
           filters:
