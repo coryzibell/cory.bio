@@ -1,12 +1,33 @@
 version: 2.1
 
 orbs:
-  cloudflare-wrangler: coryzibell/cloudflare-wrangler@2.0.1
+  cloudflare-wrangler: coryzibell/cloudflare-wrangler@volatile
 
+jobs:
+  prevent-robots:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run:
+          name: Rename robots.txt
+          command: mv public/robots.txt.disallow public/robots.txt
+      - persist_to_workspace:
+            root: .
+            paths:
+                - .
 workflows:
   deploy-cloudflare-dev:
     jobs:
-      - cloudflare-wrangler/run:
+      - prevent-robots
+      - cloudflare-wrangler/publish-wrangler-site:
+          checkout: false
+          attach-workspace: true
+          context:
+            - cloudflare-workers-auth
+            - cloudflare-zone-c8l-dev
+          requires:
+            - prevent-robots
           filters:
             branches:
               only:
@@ -14,8 +35,20 @@ workflows:
 
   deploy-cloudflare-staging:
     jobs:
-      - cloudflare-wrangler/run:
+      - prevent-robots:
+          filters:
+            branches:
+              only:
+                - master
+      - cloudflare-wrangler/publish-wrangler-site:
+          checkout: false
+          attach-workspace: true
+          context:
+            - cloudflare-workers-auth
+            - cloudflare-zone-cory-bio
           environment: "staging"
+          requires:
+            - prevent-robots
           filters:
             branches:
               only:
@@ -23,7 +56,10 @@ workflows:
 
   deploy-cloudflare-production:
     jobs:
-      - cloudflare-wrangler/run:
+      - cloudflare-wrangler/publish-wrangler-site:
+          context:
+            - cloudflare-workers-auth
+            - cloudflare-zone-cory-bio
           type: approval
           environment: "production"
           filters:
