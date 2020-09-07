@@ -1,0 +1,12 @@
+.container {
+    max-width: 65rem;
+}
+
+.wrapper {
+    margin-top: 10vh;
+}
+
+.emoji {
+    font-weight: 400;
+    font-family: apple color emoji, segoe ui emoji, noto color emoji, android emoji, emojisymbols, emojione mozilla, twemoji mozilla, segoe ui symbol, serif;
+}
