@@ -26,6 +26,8 @@ workflows:
           context:
             - cloudflare-workers-auth
             - cloudflare-zone-c8l-dev
+          requires:
+            - prevent-robots
           filters:
             branches:
               only:
@@ -41,6 +43,8 @@ workflows:
             - cloudflare-workers-auth
             - cloudflare-zone-cory-bio
           environment: "staging"
+          requires:
+            - prevent-robots
           filters:
             branches:
               only:
