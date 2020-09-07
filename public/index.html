@@ -1,31 +1,27 @@
 <html>
     <head>
-        <!-- Google Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-
-        <!-- CSS Reset -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-
-        <!-- Milligram CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css">
+        <link rel="stylesheet" href="styles.css">
         <title>cory.bio</title>
     </head>
     <body>
-        <main>
+        <main class="wrapper">
             <section class="container">
-                <h1>Cory.bio, my starting point on the web.</h1>
-                <p>Hello, I'm Cory Zibell.</p>
-                <p>This is a <a href="https://workers.cloudflare.com">Cloudflare Workers</a> serverless <a
+                <h1><span class="emoji">👋</span><br/>Welcome to Cory.bio,<br/> my entry point to the web.</h1>
+                <h3>Hello, I'm <a href="https://www.twitter.com/coryzibell">Cory Zibell.</a></h3>
+                <h4>This is a <a href="https://workers.cloudflare.com">Cloudflare Workers</a> serverless <a
                         href="https://workers.cloudflare.com/sites">site</a>, running purely on their <a
                         href="https://blog.cloudflare.com/cloud-computing-without-containers/">V8 Engine isolates</a>
-                    with <a href="https://www.cloudflare.com/products/workers-kv/">edge key-value stores</a>.</p>
-                <p>The site is auto deployed using <a href="https://circleci.com">CircleCI</a>, with a <a
+                    with <a href="https://www.cloudflare.com/products/workers-kv/">edge key-value stores</a>.</h4>
+                <h4>The site is auto deployed using <a href="https://circleci.com">CircleCI</a>, with a <a
                         href="https://circleci.com/orbs/registry/orb/coryzibell/cloudflare-wrangler">custom orb I
-                    wrote</a> to interface with <a href="https://github.com/cloudflare/wrangler">Cloudflare wrangler</a>.
-                    Now I'm actively building the actual site, so stay tuned.</p>
+                    wrote</a> to interface with <a href="https://github.com/cloudflare/wrangler">Cloudflare wrangler</a>.</h4>
+                    <h5>Now I'm actively building the actual site, so stay tuned!</h5>
                 <p>You can find the source on
                     <a href="https://github.com/coryzibell/cory.bio">Github</a>, and
-                    <a href="https://twitter.com/coryzibell">me on Twitter @coryzibell</a></p>
+                    <a href="https://twitter.com/coryzibell">me on Twitter @coryzibell</a>.</p>
             </section>
         </main>
 
