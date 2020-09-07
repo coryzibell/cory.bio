@@ -12,15 +12,21 @@ jobs:
       - run:
           name: Rename robots.txt
           command: mv public/robots.txt.disallow public/robots.txt
+      - persist_to_workspace:
+          root: public
+          paths:
+            - robots.txt
 workflows:
   deploy-cloudflare-dev:
     jobs:
       - prevent-robots
       - cloudflare-wrangler/publish-wrangler-site:
-          checkout: false
           context:
             - cloudflare-workers-auth
             - cloudflare-zone-c8l-dev
+          steps:
+            - attach_workspace:
+                at: ./public
           filters:
             branches:
               only:
@@ -30,11 +36,13 @@ workflows:
     jobs:
       - prevent-robots
       - cloudflare-wrangler/publish-wrangler-site:
-          checkout: false
           context:
             - cloudflare-workers-auth
             - cloudflare-zone-cory-bio
           environment: "staging"
+          steps:
+            - attach_workspace:
+                at: ./public
           filters:
             branches:
               only:
