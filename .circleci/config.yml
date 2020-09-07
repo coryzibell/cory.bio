@@ -14,8 +14,10 @@ jobs:
 workflows:
   deploy-cloudflare-dev:
     jobs:
+      - checkout
       - prevent-robots
       - cloudflare-wrangler/publish-wrangler-site:
+          checkout: false
           context:
             - cloudflare-workers-auth
             - cloudflare-zone-c8l-dev
@@ -26,8 +28,10 @@ workflows:
 
   deploy-cloudflare-staging:
     jobs:
+      - checkout
       - prevent-robots
       - cloudflare-wrangler/publish-wrangler-site:
+          checkout: false
           context:
             - cloudflare-workers-auth
             - cloudflare-zone-cory-bio
