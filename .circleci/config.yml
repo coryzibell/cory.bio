@@ -1,10 +1,12 @@
 version: 2.1
 
 orbs:
-  cloudflare-wrangler: coryzibell/cloudflare-wrangler@2.0.3
+  cloudflare-wrangler: coryzibell/cloudflare-wrangler
 
 jobs:
   prevent-robots:
+    docker:
+      - image: cimg/base
     steps:
       - run:
           name: Rename robots.txt
