@@ -8,13 +8,13 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
+      - checkout
       - run:
           name: Rename robots.txt
           command: mv public/robots.txt.disallow public/robots.txt
 workflows:
   deploy-cloudflare-dev:
     jobs:
-      - checkout
       - prevent-robots
       - cloudflare-wrangler/publish-wrangler-site:
           checkout: false
@@ -28,7 +28,6 @@ workflows:
 
   deploy-cloudflare-staging:
     jobs:
-      - checkout
       - prevent-robots
       - cloudflare-wrangler/publish-wrangler-site:
           checkout: false
