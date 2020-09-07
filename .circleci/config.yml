@@ -35,7 +35,11 @@ workflows:
 
   deploy-cloudflare-staging:
     jobs:
-      - prevent-robots
+      - prevent-robots:
+          filters:
+            branches:
+              only:
+                - master
       - cloudflare-wrangler/publish-wrangler-site:
           checkout: false
           attach-workspace: true
