@@ -4,11 +4,11 @@ orbs:
   cloudflare-wrangler: coryzibell/cloudflare-wrangler@2.0.3
 
 jobs:
-  - prevent-robots:
-      steps:
-        - run:
-            name: Rename robots.txt
-            command: mv public/robots.txt.disallow public/robots.txt
+  prevent-robots:
+    steps:
+      - run:
+          name: Rename robots.txt
+          command: mv public/robots.txt.disallow public/robots.txt
 workflows:
   deploy-cloudflare-dev:
     jobs:
