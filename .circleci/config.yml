@@ -1,13 +1,32 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
+
 orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
+  cloudflare-wrangler: coryzibell/cloudflare-wrangler@2.0.1
+
 workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
+  deploy-cloudflare-dev:
     jobs:
-      - welcome/run
+      - cloudflare-wrangler/run:
+          filters:
+            branches:
+              only:
+                - develop
+
+  deploy-cloudflare-staging:
+    jobs:
+      - cloudflare-wrangler/run:
+          environment: "staging"
+          filters:
+            branches:
+              only:
+                - master
+
+  deploy-cloudflare-production:
+    jobs:
+      - cloudflare-wrangler/run:
+          type: approval
+          environment: "production"
+          filters:
+            branches:
+              only:
+                - master
