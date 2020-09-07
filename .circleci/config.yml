@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  cloudflare-wrangler: coryzibell/cloudflare-wrangler
+  cloudflare-wrangler: coryzibell/cloudflare-wrangler@volatile
 
 jobs:
   prevent-robots:
