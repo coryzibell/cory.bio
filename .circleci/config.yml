@@ -56,13 +56,17 @@ workflows:
 
   deploy-cloudflare-production:
     jobs:
+      - hold-for-approval:
+          filters:
+            branches:
+              only:
+                - master
+          type: approval
       - cloudflare-wrangler/publish-wrangler-site:
           context:
             - cloudflare-workers-auth
             - cloudflare-zone-cory-bio
           type: approval
           environment: "production"
-          filters:
-            branches:
-              only:
-                - master
+          requires:
+            - hold-for-approval
